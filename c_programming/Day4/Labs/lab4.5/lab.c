@@ -6,7 +6,7 @@ void func(int* ptr)
 
     for (int i = 0 ; i<10;  i++)
     {   
-        sum = sum + ptr[i];
+        sum += ptr[i];
         
     }
     printf("sum is : %d\n",sum);

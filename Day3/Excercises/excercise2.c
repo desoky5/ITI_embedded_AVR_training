@@ -1,0 +1,22 @@
+#include<stdio.h>
+/*int fact(int x)
+{
+    if ((x == 1) || (x==0)) return 1 ;
+    return (x*fact(x-1));
+
+}*/
+int main()
+{
+    int y ;
+    int x , i ;
+    scanf("%d",&x);
+    int arr[x] ;
+    for (i=0;i<=x;i++
+    {
+        arr[i] = 2;
+    }
+
+
+
+   
+}

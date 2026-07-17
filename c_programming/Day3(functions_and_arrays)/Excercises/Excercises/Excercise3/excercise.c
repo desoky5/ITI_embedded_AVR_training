@@ -9,7 +9,7 @@ int main()
         if(num>100)
         {
             printf("thanks \n");
-            break;
+            break;//if we replaces the if with a while , the program will behave in a different way as break breaks the nearest enclosing loop or switch 
         }
         
     }

@@ -2,18 +2,25 @@
 void swap(int*,int*);
 int main()
 {
-    int arr[5]={4,3,5,2,1} ,sum=0 ;
-    
-    for(int i = 0 ;i<4;i++)
+    int arr[7];
+    int n = sizeof(arr)/sizeof(arr[0]);//size of gives the whole size of the array in the memory so we need to divide by the size of each element that differs based on the data type of elements stored in the array to get the number of elements stored 
+    for(int i = 0 ;i<n;i++)
     {
-        for(int j = 0 ;j<4-i;j++)
+        printf("Enter element number %d:",i+1);
+        scanf("%d",&arr[i]);
+        
+    }
+    
+    for(int i = 0 ;i<n-1;i++)
+    {
+        for(int j = 0 ;j<n-1-i;j++)
         if (arr[j]>arr[j+1])
         {
            swap(&arr[j],&arr[j+1]);
         }
         
     }
-    for(int i = 0 ;i<5;i++)
+    for(int i = 0 ;i<n;i++)
     {
         printf(" %d\n",arr[i]);
     }

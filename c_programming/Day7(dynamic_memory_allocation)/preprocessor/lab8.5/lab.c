@@ -1,5 +1,8 @@
 #include<stdio.h>
-#define x 7
+#include<stdio.h>
+#include"header.h"
+#include"header.h"
+#define x 22
 
 int main()
 {
@@ -14,5 +17,6 @@ int main()
     #endif
 
     printf("Y is : %d",y);
+    printf("z is : %d",z);
 
 }

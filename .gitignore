@@ -10,3 +10,15 @@ build/
 .vscode/
 .idea/
 *.out
+# executables
+src/main
+*.out
+*.elf
+*.hex
+
+# object files  
+*.o
+*.map
+
+# build folders
+build/

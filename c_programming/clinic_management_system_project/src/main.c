@@ -11,8 +11,7 @@ typedef struct
 
 int main()
 {
-    u8 mode,auth_flag=0;
-    char password[20];
+    u8 mode,auth_flag=0, password[20];
     printf("-------------------- ----Welcome to our clinic--------------------------\n");
     printf("Sellect your mode for admin mode press ( 0 ) and for user mode press  ( 1 )\n");
     scanf("%hhd",&mode);

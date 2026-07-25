@@ -4,8 +4,6 @@
 #include"../inc/STD_TYPES.h"
 #define MAX_TRIALS 3
 
-
-
 typedef struct node_records
 {
     u8 ID;
@@ -17,19 +15,23 @@ typedef struct node_records
 
 typedef struct node_reservations
 {
-    u8 name;
+    u8 Name[50];
     u8 slot;
     struct node_reservations *next;  
 }Reservations;
 
 void Add_patient_record(records *Head,u8 ID,u8 Age,u8 *gender,u8 Name[50]);
 void show_record(records *Head);
+void Add_new_reservation(Reservations *Head,u8 Name[50],u8 slot);
+void show_reservations(Reservations *Head);
 
 int main()
 {
-    u8 mode,auth_flag=0, password[20],admin_features,user_features,ID,Age,gender[20],Name[50];
+    u8 mode,auth_flag=0, password[20],admin_features,user_features,ID,Age,gender[20],Name[50],slot;
     records *Head = (records*)malloc(sizeof(records));
+    Reservations *Head_res = (Reservations*)malloc(sizeof(Reservations));
     Head->next=NULL;
+    Head_res->next=NULL;
     if(Head ==NULL) return 1;
     printf("-------------------------Welcome to our clinic--------------------------\n");
     printf("Sellect your mode , for admin mode press ( 0 ) and for user mode press  ( 1 )\n");
@@ -92,6 +94,28 @@ int main()
     
     case 1:
         printf("------------------------Welcome to user mode--------------------------\n");
+        while(1)
+        {
+        printf("To sellect from the follwing features press its coressponding number:\n");
+        printf("1:View today`s reservations\n2:Add Reservation\n3:cancel reservation\n4:View Records\n");
+        scanf("%hhd",&user_features);
+        switch (user_features)
+        {
+        case 1:
+            show_reservations(Head_res);
+            break;
+        
+        case 2:
+            printf("-------------Our Available slots-----------\nSlot 1 : from 2 to 2:30\nSlot 2 : from 2:30 to 3:00\nSlot 3 : from 3:00 to 3:30\nSlot 4 : from 3:30 to  4:00\nSlot 5 : from 4:30 to 5:00\n");
+            printf("Enter your name:");
+            scanf("%s",Name);
+            printf("Enter Slot No:");
+            scanf("%hhd",&slot);
+            Add_new_reservation(Head_res,Name,slot);
+            show_reservations(Head_res);
+            break;
+        }
+        }
         break;
     return 0 ;
 }}
@@ -104,7 +128,7 @@ void Add_patient_record(records *Head,u8 ID,u8 Age,u8 gender[20],u8 Name[50])
     {
         if(current->ID==ID) 
         {
-            printf("\n***********Invalid user id**************\n");
+            printf("\n*********** Invalid user id **************\n");
             return;
         }
         last =current;
@@ -133,4 +157,41 @@ void show_record(records *Head)
         printf("-------------------------\n");
         current=current->next;
     } 
+}
+
+void Add_new_reservation(Reservations *Head,u8 Name[50],u8 slot)
+{
+    Reservations *current = Head;
+    Reservations *last =Head;
+    while(current!=NULL)
+    {
+        if(current->slot == slot)
+        {
+            printf("**********************************\n");
+            printf("****** Already reserved **********\n");
+            printf("*** Pleasw choose another slot ***\n");
+            printf("**********************************\n");
+            return;
+        }
+        last=current;
+        current=current->next;
+    }
+    Reservations *new_node = (Reservations*)malloc(sizeof(Reservations));
+    last->next =new_node;
+    strcpy(new_node->Name,Name);
+    new_node->slot=slot;
+    new_node->next=NULL;
+}
+
+void show_reservations(Reservations *Head)
+{
+    Reservations *current = Head->next;
+    printf("\n------------Reserved slots-----------\n");
+    while(current!=NULL)
+    {
+        printf("Slot No.:%d\n",current->slot);
+        current=current->next;
+    }
+    printf("---------------------------------------\n");
+
 }

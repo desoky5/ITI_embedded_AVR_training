@@ -4,6 +4,7 @@
 #include"../inc/STD_TYPES.h"
 #define MAX_TRIALS 3
 
+//Structs Definitions
 typedef struct node_records
 {
     u8 ID;
@@ -21,12 +22,15 @@ typedef struct node_reservations
     struct node_reservations *next;  
 }Reservations;
 
+//Functions Prototypes
 void Add_patient_record(records *Head,u8 ID,u8 Age,u8 gender[20],u8 Name[50]);
 void show_record(records *Head);
 void Add_new_reservation(Reservations *Head,u8 Name[50],u8 slot,u8 ID);
 void show_reservations(Reservations *Head);
 void remove_last_reservation(Reservations* head);
 void search_patient_record_by_id(records * Head ,u8 ID);
+void remove_by_slot_no(Reservations * Head ,u8 slot);
+void edit_patient_record(records* Head , u8 ID , u8 Age,u8 gender[20],u8 Name[50]);
 
 int main()
 {
@@ -60,7 +64,7 @@ int main()
         if(auth_flag>=MAX_TRIALS) 
         {
             printf("----------------------------Authention Error--------------------------\n");
-            break;
+            return 0;
         }
         u8 admin_running = 1 ;
         while(admin_running)
@@ -75,19 +79,31 @@ int main()
             break;
         case 1:
             printf("-----------------Adding patient record---------------\n");
-            printf("Please Enter User Id :");
+            printf("Please Enter patient Id :");
             scanf("%hhd",&ID);
-            printf("Please Enter User Age:");
+            printf("Please Enter Patient Age:");
             scanf("%hhd",&Age);
-            printf("Please Enter User Gender:");
+            printf("Please Enter patient Gender:");
             scanf("%s",gender);
-            printf("Please Enter User Name:");
+            printf("Please Enter patient Name:");
             scanf("%s",Name);
             Add_patient_record(Head,ID,Age,gender,Name);
             show_record(Head);
             break;
         case 2:
-            printf("Edit record\n");
+            printf("Please Enter patient Id :");
+            scanf("%hhd",&ID);
+            printf("Editing record of patient with ID %d ...........\n",ID);
+            printf("Please Enter Patient Age:");
+            scanf("%hhd",&Age);
+            printf("Please Enter patient Gender:");
+            scanf("%s",gender);
+            printf("Please Enter patient Name:");
+            scanf("%s",Name);
+            edit_patient_record(Head,ID,Age,gender,Name);
+            printf("-----------------Updated Record-----------\n");
+            show_record(Head);
+
             break;
         case 3:
             printf("------------Today`s Reservations----------");
@@ -95,6 +111,7 @@ int main()
             break;
         case 4:
             printf("-------------Our Available slots-----------\nSlot 1 : from 2 to 2:30\nSlot 2 : from 2:30 to 3:00\nSlot 3 : from 3:00 to 3:30\nSlot 4 : from 3:30 to  4:00\nSlot 5 : from 4:30 to 5:00\n");
+            show_reservations(Head_res);
             printf("Enter your name:");
             scanf("%s",Name);
             printf("Enter Slot No:");
@@ -104,8 +121,11 @@ int main()
             Add_new_reservation(Head_res,Name,slot,ID);
             break;
         case 5:
-            printf("-----Deleting the Last Reservation-----\n");
-            remove_last_reservation(Head_res);
+            printf("-----Delete Reservation by slot no-----\n");
+            printf("Enter slot number to delete");
+            scanf("%hhd",&slot);
+            remove_by_slot_no(Head_res,slot);
+            //remove_last_reservation(Head_res);
             break;
         }}
         break;
@@ -129,7 +149,6 @@ int main()
             break;
         
         case 2:
-            printf("-------------Our Available slots-----------\nSlot 1 : from 2 to 2:30\nSlot 2 : from 2:30 to 3:00\nSlot 3 : from 3:00 to 3:30\nSlot 4 : from 3:30 to  4:00\nSlot 5 : from 4:30 to 5:00\n");
             printf("Enter your name:");
             scanf("%s",Name);
             printf("Enter Slot No:");
@@ -189,6 +208,23 @@ void show_record(records *Head)
         current=current->next;
     } 
 }
+void edit_patient_record(records* Head , u8 ID , u8 Age,u8 gender[20],u8 Name[50])
+{
+    records* current = Head->next;
+    while (current != NULL)
+    {
+       if(current->ID ==ID )
+    {
+        current->Age = Age ;
+        strcpy(current->Name,Name);
+        strcpy(current->gender,gender);
+        return;
+    }
+    current = current->next;
+    }
+    printf("-------- User ID does not exist----------");
+
+}
 
 void Add_new_reservation(Reservations *Head,u8 Name[50],u8 slot,u8 ID)
 {
@@ -223,7 +259,7 @@ void show_reservations(Reservations *Head)
     {
         printf("Slot No.:%d\n",current->slot);
         printf("ID.:%d\n",current->ID);
-        printf("-------------------------------");
+        printf("-------------------------------\n");
         current=current->next;
     }
     printf("---------------------------------------\n");
@@ -262,9 +298,31 @@ void search_patient_record_by_id(records * Head ,u8 ID)
             printf("User Age:%d\n", current->Age);
             printf("User Gender:%s\n", current->gender);
             printf("User Name:%s\n", current->Name);
+            printf("---------------------------------------------");
             return;
         }   
         current = current->next;
     }
     printf("-----------No patient found with this ID-----------");
+}
+void remove_by_slot_no(Reservations * Head ,u8 slot)
+{
+
+    Reservations *current = Head->next;
+    Reservations *previous = Head;   // dummy head acts as "previous" for the first real node
+
+    while (current != NULL)
+    {
+        if (current->slot == slot)
+        {
+            previous->next = current->next;   // unlink first
+            free(current);                    // then free — safe now
+            printf("-----------Reservation removed-----------\n");
+            return;                            // done, exit the function
+        }
+        previous = current;
+        current = current->next;
+    }
+
+    printf("-----------No reservation found for that slot-----------\n");
 }

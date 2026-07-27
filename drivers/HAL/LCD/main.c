@@ -1,0 +1,42 @@
+/*
+ * ping_pong.c
+ *
+ *  Created on: Jul 26, 2026
+ *      Author: Omar Desoky
+ */
+#define F_CPU 8000000UL
+
+#include "../../inc/STD_TYPES.h"
+#include "../../MCAL/DIO_int.h"
+#include "LCD_int.h"
+#include <util/delay.h>
+
+int main(void)
+{
+    // Initialize DIO and LCD drivers
+    MDIO_vInit();
+    HLCD_vInit();
+
+    while(1)
+    {
+        /* Move Right -> Left */
+        for(s8 col = 15; col >= 0; col--)
+        {
+            HLCD_vClearScreen();
+            HLCD_vSetCursorPosition(0, col);
+            HLCD_vDisplayString("omar");
+            _delay_ms(300);
+        }
+
+        /* Move Left -> Right */
+        for(u8 col = 0; col <= 15; col++)
+        {
+            HLCD_vClearScreen();
+            HLCD_vSetCursorPosition(0, col);
+            HLCD_vDisplayString("omar");
+            _delay_ms(300);
+        }
+    }
+
+    return 0;
+}

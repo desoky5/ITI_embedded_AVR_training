@@ -20,19 +20,22 @@ typedef struct node_reservations
     struct node_reservations *next;  
 }Reservations;
 
-void Add_patient_record(records *Head,u8 ID,u8 Age,u8 *gender,u8 Name[50]);
+void Add_patient_record(records *Head,u8 ID,u8 Age,u8 gender[20],u8 Name[50]);
 void show_record(records *Head);
 void Add_new_reservation(Reservations *Head,u8 Name[50],u8 slot);
 void show_reservations(Reservations *Head);
+void remove_last_reservation(Reservations* head);
 
 int main()
 {
     u8 mode,auth_flag=0, password[20],admin_features,user_features,ID,Age,gender[20],Name[50],slot;
     records *Head = (records*)malloc(sizeof(records));
+    if(Head ==NULL) return 1;
     Reservations *Head_res = (Reservations*)malloc(sizeof(Reservations));
+    if(Head_res ==NULL) return 1;
     Head->next=NULL;
     Head_res->next=NULL;
-    if(Head ==NULL) return 1;
+    
     printf("-------------------------Welcome to our clinic--------------------------\n");
     printf("Sellect your mode , for admin mode press ( 0 ) and for user mode press  ( 1 )\n");
     scanf("%hhd",&mode);
@@ -80,13 +83,20 @@ int main()
             printf("Edit record\n");
             break;
         case 3:
-            printf("show today`s reservations\n");
+            printf("------------Today`s Reservations----------");
+            show_reservations(Head_res);
             break;
         case 4:
-            printf("Add reservation\n");
+            printf("-------------Our Available slots-----------\nSlot 1 : from 2 to 2:30\nSlot 2 : from 2:30 to 3:00\nSlot 3 : from 3:00 to 3:30\nSlot 4 : from 3:30 to  4:00\nSlot 5 : from 4:30 to 5:00\n");
+            printf("Enter your name:");
+            scanf("%s",Name);
+            printf("Enter Slot No:");
+            scanf("%hhd",&slot);
+            Add_new_reservation(Head_res,Name,slot);
             break;
         case 5:
-            printf("cancel Reservation\n");
+            printf("-----Deleting the Last Reservation-----\n");
+            remove_last_reservation(Head_res);
             break;
         }}
         break;
@@ -128,7 +138,7 @@ void Add_patient_record(records *Head,u8 ID,u8 Age,u8 gender[20],u8 Name[50])
     {
         if(current->ID==ID) 
         {
-            printf("\n*********** Invalid user id **************\n");
+            printf("\n*********** Existing user id **************\n");
             return;
         }
         last =current;
@@ -193,5 +203,25 @@ void show_reservations(Reservations *Head)
         current=current->next;
     }
     printf("---------------------------------------\n");
+
+}
+
+void remove_last_reservation(Reservations* head)
+{
+    /* if there is only one item in the list, remove it */
+    if (head->next == NULL) {
+        free(head);
+
+    }
+
+    /* get to the second to last node in the list */
+    Reservations * current = head;
+    while (current->next->next != NULL) {
+        current = current->next;
+    }
+
+    /* now current points to the second to last item of the list, so let's remove current->next */
+    free(current->next);
+    current->next = NULL;
 
 }

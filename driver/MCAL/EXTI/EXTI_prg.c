@@ -84,4 +84,10 @@ void MEXTI_vInit(void)
 #endif
 
 }
+#include <avr/interrupt.h>
+
+ISR (INT0_vect)
+{
+	MDIO_vTogPinVal(DIO_PORTA,DIO_PIN0);
+}
 

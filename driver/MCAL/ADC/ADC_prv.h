@@ -1,0 +1,18 @@
+/*
+ * ADC_prv.h
+ *
+ *  Created on: Aug 2, 2026
+ *      Author: Omar Desoky
+ */
+
+#ifndef MCAL_ADC_ADC_PRV_H_
+#define MCAL_ADC_ADC_PRV_H_
+
+#define ADMUX *((volatile u8*)(0X27))
+#define ADCSRA *((volatile u8*)(0x26))
+#define ADCL *((volatile u8*)(0X24))
+#define ADCH *((volatile u8*)(0X25))
+#define ADC *((volatile u16*)(0X24))
+#define SFIOR *((volatile u8*)(0X50))
+
+#endif /* MCAL_ADC_ADC_PRV_H_ */

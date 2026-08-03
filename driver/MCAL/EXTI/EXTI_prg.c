@@ -11,7 +11,7 @@
 #include "EXTI_int.h"
 #include "EXTI_prv.h"
 
-
+static void (*G_EXTI_Callback[3])(void) = {NULL}; // Array of Function pointers , static to be used in that file only and not allowed to extern
 
 void MEXTI_vInit(void)
 {
@@ -84,10 +84,48 @@ void MEXTI_vInit(void)
 #endif
 
 }
+
+
+void MEXTI_vCallBackFunction(void (*Fptr)(void),u8 A_u8InterruptNo)
+{
+	G_EXTI_Callback[A_u8InterruptNo] = Fptr ;
+}
+
+void __vector_1(void) __attribute__((signal));
+
+void __vector_1(void)
+{
+	if(G_EXTI_Callback[EXTI_INT0_ID] != NULL)
+	{
+	G_EXTI_Callback[EXTI_INT0_ID]();
+	}
+}
+
+void __vector_2(void) __attribute__((signal));
+
+void __vector_2(void)
+{
+	if(G_EXTI_Callback[EXTI_INT1_ID] != NULL)
+	{
+	G_EXTI_Callback[EXTI_INT1_ID]();
+	}
+}
+
+void __vector_3(void) __attribute__((signal));
+
+void __vector_3(void)
+{
+	if(G_EXTI_Callback[EXTI_INT2_ID] != NULL)
+	{
+	G_EXTI_Callback[EXTI_INT2_ID]();
+	}
+}
+
+/*
 #include <avr/interrupt.h>
 
-ISR (INT0_vect)
+//ISR(INT0_vect)
 {
 	MDIO_vTogPinVal(DIO_PORTA,DIO_PIN0);
-}
+}*/
 

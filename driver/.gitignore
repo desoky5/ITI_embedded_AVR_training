@@ -1,0 +1,40 @@
+*.o
+*.hex
+*.elf
+*.map
+*.d
+*.bin
+*.eep
+*.lst
+build/
+.vscode/
+.idea/
+*.out
+# executables
+src/main
+*.out
+*.elf
+*.hex
+
+# object files  
+*.o
+*.map
+
+# build folders
+build/
+c_programming/clinic_management_system_project/src/main
+c_programming/clinic_management_system_project/src/main
+
+# C compiled executables (no extension)
+c_programming/**/lab
+c_programming/**/lab[0-9]
+c_programming/**/lab[0-9].[0-9]
+c_programming/**/assignment
+c_programming/**/Assignment
+c_programming/**/excercise
+c_programming/**/excercise[0-9]
+c_programming/**/code
+c_programming/**/out
+c_programming/**/test
+*.i
+*.asm

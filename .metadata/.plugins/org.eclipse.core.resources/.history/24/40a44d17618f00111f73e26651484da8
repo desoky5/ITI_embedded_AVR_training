@@ -1,3 +1,0 @@
-
-
-#define SREG *((volatile u8*)(0X5F))

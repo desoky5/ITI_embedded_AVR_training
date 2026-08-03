@@ -1,0 +1,54 @@
+/*
+ * main.c
+ *
+ *  Created on: Jul 27, 2026
+ *      Author: Omar Desoky
+ */
+#include "../LIB/STD_TYPES.h"
+#include "../MCAL/DIO/DIO_int.h"
+#include <avr/delay.h>
+
+u8 seven[9]=
+	{
+			0b00000110,
+			0b01011011,
+			0b01001111,
+			0b01100110,
+			0b01101101,
+			0b01111101,
+			0b00000111,
+			0b01111111,
+			0b01101111,
+
+	};
+
+int main()
+{
+	MDIO_vSetPortDir(DIO_PORTA, 0x0F);
+	MDIO_vSetPortVal(DIO_PORTA, 0xFF);//Activate pull up resistor for input and Output initially activated as 1
+	MDIO_vSetPortDir(DIO_PORTB, DIO_PORT_OUTPUT);
+
+	u16 pressed;
+
+//nested loop one for columns one for rows
+	while(1)
+	{
+for (u8 col = 0 ; col < 4 ; col ++)
+{
+	//activate current column
+	MDIO_vSetPinVal(DIO_PORTA, col , DIO_LOW);
+	for (u8 row=4;row<8;row++)
+	{
+		if(MDIO_u8GETPinVal(DIO_PORTA,row) == 0)
+		{
+		pressed = seven[row-4+col];
+		}
+	}
+
+	//deactivate current column
+	MDIO_vSetPinVal(DIO_PORTA, col , DIO_HIGH);
+}
+ MDIO_vSetPortVal(DIO_PORTB,pressed);
+	}
+
+}

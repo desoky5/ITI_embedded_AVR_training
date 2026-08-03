@@ -1,0 +1,47 @@
+/*
+ * EXTI_int.h
+ *
+ *  Created on: Jul 29, 2026
+ *      Author: Omar Desoky
+ */
+
+#ifndef MCAL_EXTI_EXTI_INT_H_
+#define MCAL_EXTI_EXTI_INT_H_
+
+#define ENABLE    1
+#define DISABLE   0
+
+#define EXTI_INT0_STATE     ENABLE
+#define EXTI_INT1_STATE 	ENABLE
+#define EXTI_INT2_STATE     DISABLE
+
+#define EXIT_FALLING    0
+#define EXIT_RISING	    0
+#define EXIT_LOW_LVL    0
+#define EXIT_ONCHANGE   0
+
+#define EXTI_INT0_ID    0
+#define EXTI_INT1_ID    1
+#define EXTI_INT2_ID    2
+
+/*
+ * EXTI_INT0_SENSE_CTRL , EXTI_INT1_SENSE_CTRL
+ * Options:
+ * EXTI_FALLING ,
+ * EXTI_RISING ,
+ * EXTI_LOW_LVL ,
+ * EXTI_ONCHANGE
+ *       ----------------------------
+ * EXTI_INT2_SENSE_CTRL
+ * Options:
+ * EXTI_FALLING ,
+ * EXTI_RISING
+ *
+ **/
+
+#define EXIT_INT0_SENSE_CTRL  EXIT_RISING
+#define EXIT_INT1_SENSE_CTRL  EXIT_FALLING
+#define EXIT_INT2_SENSE_CTRL  EXIT_FALLING
+
+
+#endif /* MCAL_EXTI_EXTI_INT_H_ */

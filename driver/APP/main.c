@@ -1,0 +1,39 @@
+/*
+ * main.c
+ *
+ *  Created on: Jul 29, 2026
+ *      Author: Omar Desoky
+ */
+#define F_CPU 8000000UL
+
+#include "../LIB/STD_TYPES.h"
+#include "../MCAL/TIMR/TIMR_int.h"
+#include "../MCAL/DIO/DIO_int.h"
+#include "../MCAL/GIE/GIE_int.h"
+
+
+void toggleLED(void)
+{
+	MDIO_vTogPinVal(DIO_PORTA, DIO_PIN0);
+}
+int main()
+{
+	MDIO_vInit();
+
+	MDIO_vSetPinDir(DIO_PORTA,DIO_PIN0,DIO_OUTPUT);
+
+	MGIE_vEnableGlobalInterrupt();
+
+	MTIMERS_vInit();
+	MTIMERS_vSetPreloadValue(TIM_0,192);
+
+	MTIMERS_vSetInterval_OVF(toggleLED, 3907);
+
+	MTIMERS_vStartTimer(TIM_0);
+
+	while(1)
+	{
+
+	}
+	return 0 ;
+}

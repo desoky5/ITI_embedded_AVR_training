@@ -1,0 +1,14 @@
+/*
+ * TIM0_int.h
+ *
+ *  Created on: Aug 3, 2026
+ *      Author: Omar Desoky
+ */
+
+#ifndef MCAL_TIMR_TIMR_INT_H_
+#define MCAL_TIMR_TIMR_INT_H_
+
+void MTIM0_vInit(void);
+
+
+#endif /* MCAL_TIMR_TIMR_INT_H_ */

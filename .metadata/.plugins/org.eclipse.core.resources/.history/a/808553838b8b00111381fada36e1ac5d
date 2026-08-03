@@ -1,0 +1,89 @@
+/*
+ * EXTI_prg.c
+ *
+ *  Created on: Jul 29, 2026
+ *      Author: Omar Desoky
+ */
+
+// Local Libraries Includes
+#include "../../LIB/BIT_MATH.h"
+#include "../../LIB/STD_TYPES.h"
+
+#include "../DIO/DIO_int.h"
+#include "EXTI_int.h"
+#include "EXTI_prv.h"
+
+void MEXIT_vInit(void)
+{
+	// INT0 INITIALIZATION
+#if EXTI_INT0_STATE == ENABLE
+	// Sense Control
+	//Interrupt Triggered at Falling Edge
+#if EXIT_INT0_SENSE_CTRL == EXIT_FALLING
+	CLEAR_BIT(MCUCR,0);
+	SET_BIT(MCUCR,1);
+	//Interrupt Triggered at Rising Edge
+#elif EXIT_INT0_SENSE_CTRL == EXIT_RISING
+	SET_BIT(MCUCR,0);
+	SET_BIT(MCUCR,1);
+	//Interrupt Triggered at Low Level
+#elif EXIT_INT0_SENSE_CTRL == EXIT_LOW_LVL
+	CLEAR_BIT(MCUCR,0);
+	CLEAR_BIT(MCUCR,1);
+	//Interrupt Triggered at any logical change
+#elif EXIT_INT0_SENSE_CTRL == EXIT_LOW_LVL
+	SET_BIT(MCUCR,0);
+	CLEAR_BIT(MCUCR,1);
+#else
+#error "Sense control must be EXTI_FALLING , EXTI_RISING , EXTI_LOW_LVL or EXTI_ONCHANGE "
+#endif
+	// Enable Interrupt
+	SET_BIT(GICR,6);
+#endif
+
+	//INT1 INITIALIZATION
+#if EXTI_INT1_STATE == ENABLE
+	// Sense Control
+	//Interrupt Triggered at Falling Edge
+#if EXIT_INT1_SENSE_CTRL == EXIT_FALLING
+	CLEAR_BIT(MCUCR,0);
+	SET_BIT(MCUCR,1);
+	//Interrupt Triggered at Rising Edge
+#elif EXIT_INT1_SENSE_CTRL == EXIT_RISING
+	SET_BIT(MCUCR,0);
+	SET_BIT(MCUCR,1);
+	//Interrupt Triggered at Low Level
+#elif EXIT_INT1_SENSE_CTRL == EXIT_LOW_LVL
+	CLEAR_BIT(MCUCR,0);
+	CLEAR_BIT(MCUCR,1);
+	//Interrupt Triggered at any logical change
+#elif EXIT_INT1_SENSE_CTRL == EXIT_LOW_LVL
+	SET_BIT(MCUCR,0);
+	CLEAR_BIT(MCUCR,1);
+#else
+#error "Sense control must be EXTI_FALLING , EXTI_RISING , EXTI_LOW_LVL or EXTI_ONCHANGE "
+#endif
+	// Enable Interrupt
+	SET_BIT(GICR,7);
+#endif
+	//INT2 INITIALIZATION
+#if EXTI_INT2_STATE == ENABLE
+	// Sense Control
+	//Interrupt Triggered at Falling Edge
+#if EXIT_INT0_SENSE_CTRL == EXIT_FALLING
+	CLEAR_BIT(MCUCSR,6);  // CLEAR BIT6 IN GICR (ISC2)
+	//Interrupt Triggered at Rising Edge
+#elif EXIT_INT0_SENSE_CTRL == EXIT_RISING
+	SET_BIT(MCUCR,6); //SET BIT6 IN GICR (ISC2)
+	//Interrupt Triggered at Low Level
+#else
+#error "Sense control must be EXTI_FALLING OR EXTI_RISING "
+#endif
+	// Enable Interrupt
+	SET_BIT(GICR,5);
+#endif
+
+
+}
+
+

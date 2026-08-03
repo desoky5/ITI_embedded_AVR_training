@@ -1,0 +1,13 @@
+/*
+ * keypad_cfg.h
+ *
+ *  Created on: Jul 29, 2026
+ *      Author: Omar Desoky
+ */
+
+#ifndef HAL_KEYPAD_KEYPAD_CFG_H_
+#define HAL_KEYPAD_KEYPAD_CFG_H_
+
+
+
+#endif /* HAL_KEYPAD_KEYPAD_CFG_H_ */

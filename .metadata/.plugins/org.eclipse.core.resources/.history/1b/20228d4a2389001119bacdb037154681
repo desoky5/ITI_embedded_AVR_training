@@ -1,0 +1,26 @@
+/*
+ * show_name.c
+ *
+ *  Created on: Jul 26, 2026
+ *      Author: Omar Desoky
+ */
+#define F_CPU 8000000UL
+
+#include <util/delay.h>
+#include<avr/io.h>
+
+#include "../../drivers/inc/STD_TYPES.h"
+#include "../../drivers/MCAL/DIO_int.h"
+#include "../../drivers/HAL/LCD/LCD_int.h"
+
+int main()
+{
+	HLCD_vInt();
+	HLCD_vDiaplsyString("Omar");
+	while(1)
+	{
+
+	}
+
+}
+

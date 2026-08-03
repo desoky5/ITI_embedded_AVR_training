@@ -1,0 +1,47 @@
+19:26:24 **** Incremental Build of configuration Debug for project LCD ****
+make all 
+Building file: ../LCD_prg.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"LCD_prg.d" -MT"LCD_prg.o" -c -o "LCD_prg.o" "../LCD_prg.c"
+In file included from ../LCD_prg.c:7:
+d:/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../LCD_prg.c:8:33: error: ../../inc/STD_TYPES.h: No such file or directory
+../LCD_prg.c:9:32: error: ../../inc/BIT_MATH.h: No such file or directory
+../LCD_prg.c:11:32: error: ../../MCAL/DIO_int.h: No such file or directory
+../LCD_prg.c:12:32: error: ../../MCAL/DIO_prv.h: No such file or directory
+../LCD_prg.c:13:32: error: ../../MCAL/DIO_prog.c: No such file or directory
+In file included from ../LCD_prg.c:15:
+../LCD_int.h:24: error: expected ')' before 'A_u8cmd'
+../LCD_int.h:26: error: expected ')' before 'A_u8Char'
+../LCD_int.h:27: warning: type defaults to 'int' in declaration of 'u8'
+../LCD_int.h:27: error: expected ';', ',' or ')' before 'A_u8Str'
+../LCD_int.h:29: error: expected ')' before 'A_u32Number'
+../LCD_int.h:31: error: expected ')' before 'A_u8Row'
+../LCD_int.h:35: error: expected ')' before 'A_u8PatternIdx'
+../LCD_int.h:37: error: expected ')' before 'A_u8PatternIdx'
+../LCD_prg.c: In function 'HLCD_vInit':
+../LCD_prg.c:20: warning: implicit declaration of function 'MDIO_vSetPinDir'
+../LCD_prg.c:20: error: 'DIO_PORTA' undeclared (first use in this function)
+../LCD_prg.c:20: error: (Each undeclared identifier is reported only once
+../LCD_prg.c:20: error: for each function it appears in.)
+../LCD_prg.c:20: error: 'DIO_PIN0' undeclared (first use in this function)
+../LCD_prg.c:20: error: 'DIO_OUTPUT' undeclared (first use in this function)
+../LCD_prg.c:21: error: 'DIO_PIN1' undeclared (first use in this function)
+../LCD_prg.c:22: error: 'DIO_PIN2' undeclared (first use in this function)
+../LCD_prg.c:23: warning: implicit declaration of function 'MDIO_vSetPortDir'
+../LCD_prg.c:23: error: 'DIO_PORTD' undeclared (first use in this function)
+../LCD_prg.c:23: error: 'DIO_PORT_OUTPUT' undeclared (first use in this function)
+../LCD_prg.c:27: warning: implicit declaration of function 'HLCD_vSendCmd'
+../LCD_prg.c: At top level:
+../LCD_prg.c:36: error: expected ')' before 'A_u8cmd'
+../LCD_prg.c:54: error: expected ')' before 'A_u8Char'
+../LCD_prg.c:72: warning: type defaults to 'int' in declaration of 'u8'
+../LCD_prg.c:72: error: expected ';', ',' or ')' before 'A_s8Str'
+../LCD_prg.c:79: error: expected ')' before 'A_u32Number'
+../LCD_prg.c:98: error: expected ')' before 'A_u8Row'
+../LCD_prg.c:123: error: expected ')' before 'A_u8PatternIdx'
+../LCD_prg.c:151: error: expected ')' before 'A_u8PatternIdx'
+make: *** [LCD_prg.o] Error 1
+
+19:26:24 Build Finished (took 352ms)
+

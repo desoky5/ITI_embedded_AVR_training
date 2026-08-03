@@ -1,0 +1,26 @@
+/*
+ * main.c
+ *
+ *  Created on: Jul 29, 2026
+ *      Author: Omar Desoky
+ */
+#include "../MCAL/TIMR/TIMR_int.h"
+#include "../MCAL/DIO/DIO_int.h"
+#include "../GIE/GIE_int.h"
+
+
+void turnLedon(void)
+{
+	MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0, DIO_HIGH);
+}
+int main()
+{
+	MTIMERS_vInit();
+	MTIMERS_vStopTimer(TIM_0);
+	MTIMERS_vSetPreloadValue(TIM_0,192);
+
+	while(1)
+	{
+		MTIMERS_vSetInterval_OVF(void(*turnLedon)(void),u32 A_u32Intervalcount);
+	}
+}

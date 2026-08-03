@@ -1,0 +1,9 @@
+
+void MGIE_vEnableGlobalInterrupt()
+{
+	SET_BIT(SREG,7);
+}
+void MGIE_vDisableGlobalInterrupt()
+{
+	CLEAR_BIT(SERG,7);
+}

@@ -1,0 +1,32 @@
+/*
+ * main.c
+ *
+ *  Created on: Jul 28, 2026
+ *      Author: Omar Desoky
+ */
+#include "../LIB/STD_TYPES.h"
+#include "../MCAL/DIO_int.h"
+#include <util/delay.h>
+
+int main()
+{
+	MDIO_vSetPinDir(DIO_PORTA, DIO_PIN0, DIO_OUTPUT);
+	MDIO_vSetPinDir(DIO_PORTA, DIO_PIN1, DIO_OUTPUT);
+	while(1)
+	{
+		//clock wise
+		MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0, DIO_HIGH);
+		MDIO_vSetPinVal(DIO_PORTA, DIO_PIN1, DIO_LOW);
+		_delay_ms(3000);
+		//counter clock wise
+		MDIO_vSetPinVal(DIO_PORTA, DIO_PIN1, DIO_HIGH);
+		MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0, DIO_LOW);
+		_delay_ms(2000);
+		//stop
+		MDIO_vSetPinVal(DIO_PORTA, DIO_PIN1, DIO_HIGH);
+		MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0, DIO_HIGH);
+	}
+
+	return 0 ;
+}
+

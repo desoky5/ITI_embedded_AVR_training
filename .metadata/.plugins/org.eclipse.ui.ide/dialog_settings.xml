@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="D:\projects\ITI_embedded_AVR_training\drivers"/>
+		<item value="D:\projects\ITI_embedded_AVR_training\avr_hardware_interfacing\key_pad"/>
+	</list>
+	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
+		<item value="D:\projects\ITI_embedded_AVR_training\avr_hardware_interfacing\dc_motor" key="OUTSIDE_LOCATION"/>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+</section>

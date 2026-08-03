@@ -1,0 +1,26 @@
+
+#include "stepper_int.h"
+#include "../../LIB/STD_TYPES.h"
+#include "../../MCAL/DIO_int.h"
+#include "util/delay.h"
+
+
+
+void HSTEPPER_vInit()
+{
+
+}
+
+void HSTEPPER_vRotateCW(f64 A_f64StepDelay)
+{
+
+}
+void HSTEPPER_vRotateCCW(f64 A_f64StepDelay)
+{
+
+}
+
+void HSTEPPER_vStop()
+{
+
+}

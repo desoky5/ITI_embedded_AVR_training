@@ -1,0 +1,13 @@
+/*
+ * GEI_prv.h
+ *
+ *  Created on: Jul 29, 2026
+ *      Author: Omar Desoky
+ */
+
+#ifndef MCAL_GEI_GIE_PRV_H_
+#define MCAL_GEI_GIE_PRV_H_
+
+#define SREG		*((volatile u8*)(0x5F))
+
+#endif /* MCAL_GEI_GIE_PRV_H_ */

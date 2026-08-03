@@ -1,0 +1,43 @@
+09:01:02 **** Incremental Build of configuration Release for project led_button ****
+make all 
+Building file: ../drivers/MCAL/DIO_prog.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"drivers/MCAL/DIO_prog.d" -MT"drivers/MCAL/DIO_prog.o" -c -o "drivers/MCAL/DIO_prog.o" "../drivers/MCAL/DIO_prog.c"
+Finished building: ../drivers/MCAL/DIO_prog.c
+ 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.o" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: led_button.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,led_button.map -mmcu=atmega32 -o "led_button.elf"  ./drivers/MCAL/DIO_prog.o  ./main.o   
+./main.o: In function `MDIO_vInit':
+main.c:(.text.MDIO_vInit+0x0): multiple definition of `MDIO_vInit'
+./drivers/MCAL/DIO_prog.o:DIO_prog.c:(.text.MDIO_vInit+0x0): first defined here
+./main.o: In function `MDIO_vSetPinDir':
+main.c:(.text.MDIO_vSetPinDir+0x0): multiple definition of `MDIO_vSetPinDir'
+./drivers/MCAL/DIO_prog.o:DIO_prog.c:(.text.MDIO_vSetPinDir+0x0): first defined here
+./main.o: In function `MDIO_vSetPinVal':
+main.c:(.text.MDIO_vSetPinVal+0x0): multiple definition of `MDIO_vSetPinVal'
+./drivers/MCAL/DIO_prog.o:DIO_prog.c:(.text.MDIO_vSetPinVal+0x0): first defined here
+./main.o: In function `MDIO_u8GETPinVal':
+main.c:(.text.MDIO_u8GETPinVal+0x0): multiple definition of `MDIO_u8GETPinVal'
+./drivers/MCAL/DIO_prog.o:DIO_prog.c:(.text.MDIO_u8GETPinVal+0x0): first defined here
+./main.o: In function `MDIO_vSetPortDir':
+main.c:(.text.MDIO_vSetPortDir+0x0): multiple definition of `MDIO_vSetPortDir'
+./drivers/MCAL/DIO_prog.o:DIO_prog.c:(.text.MDIO_vSetPortDir+0x0): first defined here
+./main.o: In function `MDIO_vSetPortVal':
+main.c:(.text.MDIO_vSetPortVal+0x0): multiple definition of `MDIO_vSetPortVal'
+./drivers/MCAL/DIO_prog.o:DIO_prog.c:(.text.MDIO_vSetPortVal+0x0): first defined here
+./main.o: In function `MDIO_u8GETPortVal':
+main.c:(.text.MDIO_u8GETPortVal+0x0): multiple definition of `MDIO_u8GETPortVal'
+./drivers/MCAL/DIO_prog.o:DIO_prog.c:(.text.MDIO_u8GETPortVal+0x0): first defined here
+./main.o: In function `MDIO_vTogPinVal':
+main.c:(.text.MDIO_vTogPinVal+0x0): multiple definition of `MDIO_vTogPinVal'
+./drivers/MCAL/DIO_prog.o:DIO_prog.c:(.text.MDIO_vTogPinVal+0x0): first defined here
+make: *** [led_button.elf] Error 1
+
+09:01:03 Build Finished (took 792ms)
+

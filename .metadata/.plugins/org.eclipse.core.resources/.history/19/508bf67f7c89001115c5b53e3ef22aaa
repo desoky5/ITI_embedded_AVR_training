@@ -1,0 +1,48 @@
+/*
+ * main.c
+ *
+ *  Created on: Jul 27, 2026
+ *      Author: Omar Desoky
+ */
+/*
+ * main.c
+
+ *
+ *  Created on: Jul 27, 2026
+ *      Author: Omar Desoky
+ */
+//#define F_CPU 8000000UL
+#include "../LIB/STD_TYPES.h"
+#include "../MCAL/DIO/DIO_int.h"
+#include "../MCAL/DIO/DIO_prv.h"
+#include "../MCAL/DIO/DIO_prog.c"
+
+
+
+#include <avr/delay.h>
+
+int main()
+{
+	MDIO_vSetPinDir(DIO_PORTA , DIO_PIN0, DIO_INPUT);//set A0 input
+	MDIO_vSetPinVal(DIO_PORTA , DIO_PIN0, DIO_HIGH);
+	MDIO_vSetPinDir( DIO_PORTA , DIO_PIN1, DIO_OUTPUT);//set A1 output
+
+	while(1)
+	{
+	 MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN0);
+	if ( MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN0) == 0)
+	{
+		_delay_ms(20);
+		//check again if button is still pressed
+		if ( MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN0) == 0 )
+		{
+		MDIO_vTogPinVal(DIO_PORTA,DIO_PIN1);
+		}
+
+	}
+
+	}
+
+return 0;
+}
+

@@ -1,0 +1,42 @@
+/*
+ * main.c
+ *
+ *  Created on: Jul 29, 2026
+ *      Author: Omar Desoky
+ */
+
+#include "../MCAL/DIO/DIO_int.h"
+#include "../MCAL/ADC/ADC_int.h"
+#define A_u8Channel CHANNEL_0
+#include <util/delay.h>
+
+int main()
+{
+
+	u16 ADC;
+	MDIO_vInit();
+	MDIO_vSetPinDir(DIO_PORTA, DIO_PIN0,DIO_INPUT);
+	MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0,DIO_HIGH);
+	MDIO_vSetPinDir(DIO_PORTB, DIO_PIN0,DIO_OUTPUT);
+	MADC_vInit();
+	ADC = MADC_vReadAnalog(A_u8Channel);
+	ADC_sampled = (ADC * 5000 )/1024 ;
+	temp = (ADC_sampled/10);
+
+
+	while(1)
+	{
+		ADC = MADC_vReadAnalog(A_u8Channel);
+		if (ADC < 100 )
+		{
+			MDIO_vSetPinVal(DIO_PORTB,DIO_PIN0, DIO_HIGH);
+			_delay_ms(3000);
+		}
+		else if (ADC >100 )
+		{
+			MDIO_vSetPinVal(DIO_PORTB,DIO_PIN0, DIO_LOW);
+			_delay_ms(3000);
+		}
+
+	}
+}

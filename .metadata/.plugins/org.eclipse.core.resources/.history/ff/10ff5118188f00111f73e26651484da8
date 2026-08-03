@@ -1,0 +1,158 @@
+/*
+ * TIM0_prg.c
+ *  Created on: Aug 3, 2026
+ *      Author: Omar Desoky
+ */
+#include "../../LIB/STD_TYPES.h"
+#include"../../LIB/BIT_MATH.h"
+#include "TIMR_int.h"
+#include "TIMR_prv.h"
+#include "TIMR_cfg.h"
+
+
+void (*G_TIMER_OVF_CB)(void) = {NULL};
+void (*G_TIMER_CTC_CB)(void) = {NULL};
+void MTIMERS_vInit()
+{
+#if TIMER0_STATE == ENABLE
+
+	#if TIMER0_MODE  == NORMAL_OVERFLOW
+		CLEAR_BIT(TCCR0, WGM01);
+		CLEAR_BIT(TCCR0, WGM00);
+
+	#elif  TIMER0_MODE ==  CTC
+		SET_BIT(TCCR0, WGM01);
+		CLEAR_BIT(TCCR0, WGM00);
+
+	#elif  TIMER0_MODE == PWM_PHASE_CORRECT
+		SET_BIT(TCCR0, WGM00);
+		CLEAR_BIT(TCCR0, WGM01);
+
+
+		#if PWM_OUTPUT_MODE == NON_INVERTING
+				CLEAR_BIT(TCCR0, COM00);
+				SET_BIT(TCCR0, COM01);
+
+		#elif PWM_OUTPUT_MODE == INVERTING
+				SET_BIT(TCCR0, COM00);
+				SET_BIT(TCCR0, COM01);
+
+		#elif PWM_OUTPUT_MODE == DISCONNECTED
+				CLEAR_BIT(TCCR0, COM00);
+				CLEAR_BIT(TCCR0, COM01);
+       #endif
+
+	#elif  TIMER0_MODE == FAST_PWM
+		SET_BIT(TCCR0, WGM01);
+		SET_BIT(TCCR0, WGM00);
+
+		#if PWM_OUTPUT_MODE == NON_INVERTING
+			CLEAR_BIT(TCCR0, COM00);
+			SET_BIT(TCCR0, COM01);
+
+		#elif PWM_OUTPUT_MODE == INVERTING
+			SET_BIT(TCCR0, COM00);
+			SET_BIT(TCCR0, COM01);
+
+		#elif PWM_OUTPUT_MODE == DISCONNECTED
+			CLEAR_BIT(TCCR0, COM00);
+			CLEAR_BIT(TCCR0, COM01);
+		#endif
+	#endif
+
+#if  INTERRUPT_CONTROL == ENABLE
+	MTIMERS_vEnableInterrupt(TIM_0,TIMER0_MODE);
+
+#endif
+	// STOP TIMER0
+	CLEAR_BIT(TCCR0, CS00);
+	CLEAR_BIT(TCCR0, CS01);
+	CLEAR_BIT(TCCR0, CS02);
+#endif
+
+}
+
+void MTIMERS_vStartTimer(u8 A_u8TimerID)
+{
+	if ( A_u8TimerID==TIM_0)
+	{
+	TCCR0 = (TCCR0 & 0XF8) | (CLK_SELLECT_PRESCALER_TIM0 & 0x07); // Anding with 0x07 is safety to change only the numbers of the first three bits
+	}
+}
+void MTIMERS_vStopTimer(u8 A_u8TimerID)
+{
+	if ( A_u8TimerID==TIM_0)
+	{
+	TCCR0 = (TCCR0 & 0XF8) | (0x00 & 0x07);
+
+	}
+}
+//OVF
+void MTIMERS_vSetPreloadValue(u8 A_u8TimerID,u16 A_u16Preload)
+{
+	switch (A_u8TimerID)
+	{
+	case TIM_0 :
+		TCNT0 = (u8) A_u16Preload ;
+		break;
+	}
+
+}
+
+//CTC
+void MTIMERS_vSetCompareMatch(u8 A_u8TimerID,u16 A_u16OCR_val)
+{
+	switch (A_u8TimerID)
+	{
+	case TIM_0 :
+		OCR0 = (u8) A_u16OCR_val ;
+		break;
+	}
+}
+
+void MTIMERS_vEnableInterrupt(u8 A_u8TimerID,u8 A_u8TimerMode)
+{
+	if ( A_u8TimerID == TIM_0)
+		{
+			switch (A_u8TimerMode)
+			{
+			case  NORMAL_OVERFLOW :
+				SET_BIT(TIMSK,0);
+				break;
+
+			case  CTC :
+				SET_BIT(TIMSK,1);
+				break;
+			}
+
+		}
+}
+void MTIMERS_vDisableInterrupt(u8 A_u8TimerID,u8 A_u8TimerMode)
+{
+	if ( A_u8TimerID == TIM_0)
+		{
+			switch (A_u8TimerMode)
+			{
+			case  NORMAL_OVERFLOW :
+				CLEAR_BIT(TIMSK,0);
+				break;
+
+			case  CTC :
+				CLEAR_BIT(TIMSK,1);
+				break;
+			}
+
+		}
+}
+
+
+void __vector_10(void) __attribute__((signal));
+void __vector_10(void)
+{
+}
+
+void __vector_11(void) __attribute__((signal));
+
+void __vector_11(void)
+{
+}

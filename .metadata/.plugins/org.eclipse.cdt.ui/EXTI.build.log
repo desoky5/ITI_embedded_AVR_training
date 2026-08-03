@@ -1,0 +1,12 @@
+19:37:38 **** Incremental Build of configuration Debug for project EXTI ****
+make all 
+Invoking: Print Size
+avr-size --format=berkeley -t EXTI.elf
+   text	   data	    bss	    dec	    hex	filename
+   6598	      8	      7	   6613	   19d5	EXTI.elf
+   6598	      8	      7	   6613	   19d5	(TOTALS)
+Finished building: sizedummy
+ 
+
+19:37:39 Build Finished (took 222ms)
+

@@ -10,15 +10,44 @@
 
 int main()
 {
+	// OUTPUT PINS
 	MDIO_vSetPinDir(DIO_PORTA, DIO_PIN0, DIO_OUTPUT);
+	MDIO_vSetPinDir(DIO_PORTA, DIO_PIN1, DIO_OUTPUT);
+	//INPUT PINS
+	MDIO_vSetPinDir(DIO_PORTA, DIO_PIN2, DIO_INPUT);
+	MDIO_vSetPinDir(DIO_PORTA, DIO_PIN3, DIO_INPUT);
+	//PULL UP resistors for input
+	MDIO_vSetPinVal(DIO_PORTA, DIO_PIN2, DIO_HIGH);
+	MDIO_vSetPinVal(DIO_PORTA, DIO_PIN3, DIO_HIGH);
+	//u8 mode = 1 ;
 	while(1)
 	{
-		MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0, DIO_HIGH);
-		_delay_ms(1000);
-		MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0, DIO_LOW);
-		_delay_ms(1000);
-	}
 
+		if ( MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN2) == 0)
+		{
+		    _delay_ms(10);
+		    if (MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN2) == 0)   // confirm still pressed after debounce
+		    {
+		        while(MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN2) == 0);  // wait for release
+//		        _delay_ms(20);
+		    	MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0, DIO_HIGH);
+		    	MDIO_vSetPinVal(DIO_PORTA, DIO_PIN1, DIO_LOW);
+		    	_delay_ms(3000);
+		    }
+		}
+		else if (MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN3) == 0)
+		{
+		    _delay_ms(10);
+		    if (MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN3) == 0)
+		    {
+		        while(MDIO_u8GETPinVal(DIO_PORTA,DIO_PIN3) == 0);
+//		        _delay_ms(20);
+		    	MDIO_vSetPinVal(DIO_PORTA, DIO_PIN1, DIO_HIGH);
+		    	MDIO_vSetPinVal(DIO_PORTA, DIO_PIN0, DIO_LOW);
+		    	_delay_ms(3000);
+		    }
+		}
+}
 	return 0 ;
 }
 

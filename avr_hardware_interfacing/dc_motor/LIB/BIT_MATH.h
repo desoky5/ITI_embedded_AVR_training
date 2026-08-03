@@ -23,7 +23,7 @@
 #define TOGGLE_BIT(Register, Bit)      ((Register) ^= (1U << (Bit)))
 
 /** @brief Read a single bit from Register into value (0 or 1). */
-#define GET_BIT(Register, Bit, value) 
+#define GET_BIT(Register, Bit, value)  value = ((Register>>Bit)&1U)
 
 /** @brief Rotate an 8-bit Register left by Bit positions. */
 #define ROTATE_LEFT(Register, bitN)     ((unsigned char)(((Register) << (bitN)) | ((Register) >> (NO_OF_BITS - (bitN)))))

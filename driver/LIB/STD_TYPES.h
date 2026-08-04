@@ -32,4 +32,5 @@ typedef double                f64; /**< @brief Double-precision floating point (
 #ifndef NULL
 #define NULL            ((void*)0) // NULL pointer pointing to nothing  , we do not know the data type of data stored in zero address so it must be casted to a known pointer type of VOIF
 #endif
+
 #endif /* STD_TYPES_H */

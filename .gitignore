@@ -1,3 +1,4 @@
+# ===== Compiled/object files =====
 *.o
 *.hex
 *.elf
@@ -6,26 +7,26 @@
 *.bin
 *.eep
 *.lst
+*.out
+*.i
+*.asm
+
+# ===== Build folders =====
 build/
+Debug/
+Release/
+
+# ===== IDE folders =====
 .vscode/
 .idea/
-*.out
-# executables
-src/main
-*.out
-*.elf
-*.hex
 
-# object files  
-*.o
-*.map
+# ===== Eclipse/IMT_SDK workspace artifacts =====
+.metadata/
+RemoteSystemsTempFiles/
+.project
+.cproject
 
-# build folders
-build/
-c_programming/clinic_management_system_project/src/main
-c_programming/clinic_management_system_project/src/main
-
-# C compiled executables (no extension)
+# ===== C compiled executables (no extension) =====
 c_programming/**/lab
 c_programming/**/lab[0-9]
 c_programming/**/lab[0-9].[0-9]
@@ -36,5 +37,5 @@ c_programming/**/excercise[0-9]
 c_programming/**/code
 c_programming/**/out
 c_programming/**/test
-*.i
-*.asm
+c_programming/clinic_management_system_project/src/main
+src/main

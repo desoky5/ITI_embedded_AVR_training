@@ -15,6 +15,16 @@
 #define TIMSK *((volatile u8*)(0X59))
 #define TIFR *((volatile u8*)(0X58)) // TIMER INTERRUPT FLAG REGISTER FOR TIMER0
 
+
+// REGISTERS ADDRESSES OF TIM0
+#define TCCR1A *((volatile u8*)(0X4F))
+#define TCCR1B *((volatile u8*)(0X4E))
+#define TCNT1L *((volatile u16*)(0X4C))
+#define OCR1A  *((volatile u16*)(0x4A))
+#define OCR1B  *((volatile u16*)(0x48))
+#define ICR1   *((volatile u16*)(0x46))
+
+
 // TCCR0 BITS MACROS
 
 #define CS00  0

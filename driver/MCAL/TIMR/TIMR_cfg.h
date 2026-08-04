@@ -11,9 +11,17 @@
 // to enable and disable the timers
 
 #define TIMER0_STATE						ENABLE
+#define TIMER1_STATE						ENABLE
 
-#define TIMER0_MODE 						NORMAL_OVERFLOW
+#define TIMER0_MODE 						FAST_PWM
+#define TIMER1_MODE 						FAST_PWM
+
 #define CLK_SELLECT_PRESCALER_TIM0 			CLK_8
+#define CLK_SELLECT_PRESCALER_TIM1 			CLK_8
+
+
+
+//configure prescaler
 //Define PWM MODES
 #define  DISCONNECTED            0
 #define  NON_INVERTING           1

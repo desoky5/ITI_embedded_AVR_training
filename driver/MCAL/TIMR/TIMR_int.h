@@ -9,6 +9,8 @@
 #define MCAL_TIMR_TIMR_INT_H_
 
 #define TIM_0        0
+#define TIM_1        1
+#define TIM_1_A      2
 
 
 void MTIMERS_vInit(void);

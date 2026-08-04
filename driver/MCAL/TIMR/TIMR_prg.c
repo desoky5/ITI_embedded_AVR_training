@@ -73,6 +73,27 @@ void MTIMERS_vInit()
 	CLEAR_BIT(TCCR0, CS02);
 #endif
 
+
+#if TIMER1_STATE == ENABLE
+
+#if TIMER1_MODE ==  FAST_PWM
+	CLEAR_BIT(TCCR1A , 0);
+	SET_BIT(TCCR1A , 1);
+	SET_BIT(TCCR1B , 3);
+	SET_BIT(TCCR1B , 4);
+
+	// Non Inverting MODE
+
+	CLEAR_BIT(TCCR1A , 6);
+	SET_BIT(TCCR1A , 7);
+
+	ICR1 = 20000;
+
+
+
+#endif
+#endif
+
 }
 
 void MTIMERS_vStartTimer(u8 A_u8TimerID)
@@ -81,6 +102,11 @@ void MTIMERS_vStartTimer(u8 A_u8TimerID)
 	{
 	TCCR0 = (TCCR0 & 0XF8) | (CLK_SELLECT_PRESCALER_TIM0 & 0x07); // Anding with 0x07 is safety to change only the numbers of the first three bits
 	}
+
+	if ( A_u8TimerID==TIM_1)
+		{
+		TCCR1B = (TCCR1B & 0XF8) | (CLK_SELLECT_PRESCALER_TIM1 & 0x07); // Anding with 0x07 is safety to change only the numbers of the first three bits
+		}
 }
 void MTIMERS_vStopTimer(u8 A_u8TimerID)
 {
@@ -89,6 +115,12 @@ void MTIMERS_vStopTimer(u8 A_u8TimerID)
 	TCCR0 = (TCCR0 & 0XF8) | (0x00 & 0x07);
 
 	}
+
+	if ( A_u8TimerID==TIM_1)
+		{
+		TCCR1B = (TCCR1B & 0XF8) | (0x00 & 0x07);
+
+		}
 }
 //OVF
 void MTIMERS_vSetPreloadValue(u8 A_u8TimerID,u16 A_u16Preload)
@@ -111,6 +143,9 @@ void MTIMERS_vSetCompareMatch(u8 A_u8TimerID,u16 A_u16OCR_val)
 	case TIM_0 :
 		OCR0 = (u8) A_u16OCR_val ;
 		break;
+	case TIM_1_A :
+			OCR1A = A_u16OCR_val ;
+			break;
 	}
 }
 
@@ -177,9 +212,8 @@ void __vector_10(void)
 	if(G_TIMER_CTC_CB != NULL )
 	{
 		G_TIMER_CTC_CB();
-		LS_u32Counter = 0;
-
 	}
+	LS_u32Counter = 0;
 	}
 }
 
@@ -198,8 +232,7 @@ void __vector_11(void)
 	if(G_TIMER_OVF_CB != NULL )
 	{
 		G_TIMER_OVF_CB();
-		LS_u32T_OVF = 0;
-
 	}
+	LS_u32T_OVF = 0;
 	}
 }

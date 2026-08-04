@@ -25,6 +25,7 @@ Release/
 RemoteSystemsTempFiles/
 .project
 .cproject
+.settings/
 
 # ===== C compiled executables (no extension) =====
 c_programming/**/lab

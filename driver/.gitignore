@@ -38,3 +38,4 @@ c_programming/**/out
 c_programming/**/test
 *.i
 *.asm
+/Debug/

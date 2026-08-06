@@ -15,7 +15,7 @@
 #define LCD_E			DIO_PIN2
 
 
-#define LCD_DATA_PORT 	DIO_PORTD
+#define LCD_DATA_PORT 	DIO_PORTC
 
 
 #endif /* HAL_LCD_LCD_CFG_H_ */

@@ -131,7 +131,7 @@ void MTIMERS_vInit(void)
 #endif
 
 #if INTERRUPT_CONTROL == ENABLE
-	MTIMERS_vEnableInterrupt(TIM_1, TIMER0_MODE);
+	MTIMERS_vEnableInterrupt(TIM_1, TIMER1_MODE);
 
 #elif INTERRUPT_CONTROL == DISABLE
 	MTIMERS_vDisableInterrupt(TIM_1, TIMER0_MODE);
@@ -286,11 +286,14 @@ void MTIMERS_vSetTrigger(u8 A_u8TriggerType)
 		SET_BIT(TCCR1B,6);
 		break;
 
-	case TRIG_TYPE_RISING:
+	case TRIG_TYPE_FALLING:
 		CLEAR_BIT(TCCR1B,6);
 		break;
 	}
+	SET_BIT(TIFR,5);
 }
+
+
 
 
 u16 MTIMERS_u16GetCapturedValue(void)
@@ -351,6 +354,6 @@ void __vector_6(void)
 {
 	if(G_TIMER_ICU_CB != NULL)
 			{
-				G_TIMER_CTC_CB();
+				G_TIMER_ICU_CB();
 			}
 }

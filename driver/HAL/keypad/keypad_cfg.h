@@ -1,9 +1,10 @@
+
 #ifndef HAL_KPD_KPD_CFG_H_
 #define HAL_KPD_KPD_CFG_H_
 
 
-#define KPD_COL_PORT   DIO_PORTB
-#define KPD_ROW_PORT   DIO_PORTB
+#define KPD_COL_PORT   DIO_PORTD
+#define KPD_ROW_PORT   DIO_PORTD
 
 /* Column pins */
 #define COL_INIT       DIO_PIN0

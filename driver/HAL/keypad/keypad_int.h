@@ -1,8 +1,10 @@
+
+
 #ifndef HAL_KPD_KPD_INT_H_
 #define HAL_KPD_KPD_INT_H_
 
-#define KPD_ROWS       3
-#define KPD_COLS       3
+#define KPD_ROWS       4
+#define KPD_COLS       4
 
 #define NO_KEY         0xFF
 

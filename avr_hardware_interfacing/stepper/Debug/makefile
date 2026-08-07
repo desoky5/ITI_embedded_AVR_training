@@ -67,7 +67,7 @@ stepper.hex: stepper.elf
 
 sizedummy: stepper.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 stepper.elf
+	-avr-size --format=berkeley -t stepper.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 

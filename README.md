@@ -17,7 +17,7 @@ This repo documents that gap being closed, module by module:
 
 ## How This Fits the Bigger Picture
 
-I already work at the systems-integration level — STM32 firmware talking to ROS2 over UART, encoder-based PID control, EKF localization, sensor fusion — for projects like a closed-loop DC motor controller, a mobile manipulator (STM32F411 + Pi 5 + YOLOv8), and an in-progress Minesweeper robot (STM32F401 HAL + Pi 5/ROS2 Jazzy + Nav2). This diploma reinforces the layer underneath all of that: the register-level, interrupt-driven, timing-critical AVR fundamentals that make the STM32/ROS2 work *reliable* instead of just *functional*. It's also directly relevant to graduate program applications (ETH Zurich, TU Delft, KAUST) and industry roles where hardware-software integration is the differentiator, not just ROS2 fluency.
+I already work at the systems-integration level — STM32 firmware talking to ROS2 over UART, encoder-based PID control, EKF localization, sensor fusion — for projects like a closed-loop DC motor controller, a mobile manipulator (STM32F411 + Pi 5 + YOLOv8), and an in-progress Minesweeper robot (STM32F401 HAL + Pi 5/ROS2 Jazzy + Nav2). This diploma reinforces the layer underneath all of that: the register-level, interrupt-driven, timing-critical AVR fundamentals that make the STM32/ROS2 work *reliable* instead of just *functional*. It's also directly relevant to graduate program applications and industry roles where hardware-software integration is the differentiator, not just ROS2 fluency.
 
 ## Repository Structure
 
